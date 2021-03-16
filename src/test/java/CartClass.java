@@ -25,8 +25,7 @@ public class CartClass {
         WebElement productPriceInBasket = driver.findElement(By.xpath(".//*[@id='cart-price-container']/div[3]/p"));
         String basketPrice = productPriceInBasket.getText();
         Assert.assertEquals(price, basketPrice);
-        System.out.println("Urunun listelenen fiyati ile sepetteki fiyati esittir ve " + basketPrice + "'dir.");
-        System.out.println("-----------------------------");
+        System.out.println("Ürün fiyatı ile sepet fiyatı aynıdır ve " + basketPrice + "'dir.");
     }
 
     public void increaseQuantity(WebDriver driver, String quanitiy){
@@ -41,14 +40,13 @@ public class CartClass {
         WebElement productCount = driver.findElement(By.xpath(
                 "//*[@id=\'submit-cart\']/div/div[2]/div[3]/div/div[1]/div/div[5]/div[1]/div/ul/li[1]/div[1]"));
         System.out.println(productCount.getText());
-        System.out.println("-----------------------------");
 
         if (productCount.getText().contains(count + " Adet")) {
-            System.out.println("Sepetteki urun adedi 2'dir.");
-            System.out.println("-----------------------------");
+            System.out.println("Sepette " + count + " adet ürün bulunmaktadır.");
+
 
         } else {
-            System.out.println("Sepetteki urun adedi 2 degildir.");
+            System.out.println("Sepette" + count + "adet ürün bulunmamaktadır.");
         }
     }
 
