@@ -1,15 +1,12 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import java.util.concurrent.TimeUnit;
-import org.openqa.selenium.WebElement;
+
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.By;
 
 import java.util.List;
 import java.util.Random;
@@ -22,7 +19,6 @@ public class SampleTest {
 
     @Test
     public void Test1(){
-
 
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
@@ -39,8 +35,8 @@ public class SampleTest {
         }
 
         driver.navigate().to("https://www.gittigidiyor.com/uye-girisi");
-        driver.findElement(By.xpath("//*[@id=\'L-UserNameField\']")).sendKeys("bahar_-98@hotmail.com");
-        driver.findElement(By.xpath("//*[@id=\'L-PasswordField\']")).sendKeys("Olalala333");
+        driver.findElement(By.xpath("//*[@id=\'L-UserNameField\']")).sendKeys("1631014@dogus.edu.tr");
+        driver.findElement(By.xpath("//*[@id=\'L-PasswordField\']")).sendKeys("bahar12345");
         driver.findElement(By.xpath("//*[@id='gg-login-enter']")).click();
         //Assert.assertEquals("Login yapılamadı!", url, driver.getCurrentUrl());
 
@@ -71,8 +67,36 @@ public class SampleTest {
         System.out.println("Urunun listelenen fiyati ile sepetteki fiyati esittir ve " + basketPrice + "'dir.");
         System.out.println("-----------------------------");
 
+//			Product Quantity
+        WebElement productQuantity = driver.findElement(By.xpath(
+                "//body/div[@id='main-content']/div[2]/div[1]/div[1]/form[1]/div[1]/div[2]/div[2]/div[1]/div[2]/div[6]/div[2]/div[2]/div[4]/div[1]/div[2]/select[1]"));
+        productQuantity.click();
+        productQuantity.sendKeys("2");
+        productQuantity.sendKeys(Keys.ENTER);
+
+        //	 		Check the product count
+        WebElement productCount = driver.findElement(By.xpath(
+                "//*[@id=\'submit-cart\']/div/div[2]/div[3]/div/div[1]/div/div[5]/div[1]/div/ul/li[1]/div[1]"));
+        System.out.println(productCount.getText());
+        System.out.println("-----------------------------");
+
+        if (productCount.getText().contains("2 Adet")) {
+            System.out.println("Sepetteki urun adedi 2'dir.");
+            System.out.println("-----------------------------");
+
+        } else {
+            System.out.println("Sepetteki urun adedi 2 degildir.");
+        }
+//			Delete the item
+        driver.findElement(By.xpath(
+                "/html//div[@id='cart-items-container']/div[@class='products-container']/div/div//div[@class='row']/a[@title='Sil']/i[@class='gg-icon gg-icon-bin-medium']"))
+                .click();
+
+//			Close the window
+        driver.quit();
 
         System.out.println("Hello folks!");
     }
 
 }
+
