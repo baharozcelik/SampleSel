@@ -21,6 +21,9 @@ public class HomeClass {
 
     public void switchPage(WebDriver driver, String pageNumber){
         driver.navigate().to("https://www.gittigidiyor.com/arama/?k=Bilgisayar&sf=" + pageNumber);
+        assertEquals("Bilgisayar - GittiGidiyor - 2/100",driver.getTitle());
+        System.out.println("2. sayfa açıldı.");
+
     }
 
     public String randomSelectAndGetPrice(WebDriver driver){
