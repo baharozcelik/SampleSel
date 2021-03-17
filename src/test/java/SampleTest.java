@@ -43,7 +43,7 @@ public class SampleTest extends BaseClass {
 
         cartPage.increaseQuantity(driver, "2");
 
-        cartPage.checkQuanitiyCount(driver, "2");
+        cartPage.checkQuantityCount(driver, "2");
 
         cartPage.deleteProduct(driver);
     }

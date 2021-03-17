@@ -28,31 +28,26 @@ public class CartClass {
         System.out.println("Ürün fiyatı ile sepet fiyatı aynıdır ve " + basketPrice + "'dir.");
     }
 
-    public void increaseQuantity(WebDriver driver, String quanitiy){
+    public void increaseQuantity(WebDriver driver, String quantity)   {
         WebElement productQuantity = driver.findElement(By.xpath(
                 "//body/div[@id='main-content']/div[2]/div[1]/div[1]/form[1]/div[1]/div[2]/div[2]/div[1]/div[2]/div[6]/div[2]/div[2]/div[4]/div[1]/div[2]/select[1]"));
         productQuantity.click();
-        productQuantity.sendKeys(quanitiy);
+        productQuantity.sendKeys(quantity);
         productQuantity.sendKeys(Keys.ENTER);
     }
 
-    public void checkQuanitiyCount(WebDriver driver, String count){
+    public void checkQuantityCount(WebDriver driver, String count){
         WebElement productCount = driver.findElement(By.xpath(
                 "//*[@id=\'submit-cart\']/div/div[2]/div[3]/div/div[1]/div/div[5]/div[1]/div/ul/li[1]/div[1]"));
-        System.out.println(productCount.getText());
-
-        if (productCount.getText().contains(count + " Adet")) {
-            System.out.println("Sepette " + count + " adet ürün bulunmaktadır.");
-
-
-        } else {
-            System.out.println("Sepette" + count + "adet ürün bulunmamaktadır.");
-        }
+        System.out.println("Sepette " + count + " adet ürün bulunmaktadır.");
+        //}
     }
 
     public void deleteProduct(WebDriver driver) {
         driver.findElement(By.xpath(
                 "/html//div[@id='cart-items-container']/div[@class='products-container']/div/div//div[@class='row']/a[@title='Sil']/i[@class='gg-icon gg-icon-bin-medium']"))
                 .click();
+        System.out.println("Sepetteki ürünler silindi.");
+
     }
 }
